@@ -66,8 +66,10 @@ fi
 
 # Remove the old flags.
 sed -i '/^--force-dark-mode/d' "$chromium_flags_conf"
+sed -i '/^--enable-features=WebUIDarkMode/d' "$chromium_flags_conf"
 
 # Add the new flags.
 if [[ "$value" == "dark" ]]; then
   echo "--force-dark-mode" >> "$chromium_flags_conf"
+  echo "--enable-features=WebUIDarkMode" >> "$chromium_flags_conf"
 fi
