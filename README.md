@@ -4,6 +4,4 @@ This is a script to change the `prefers-color-scheme` in supported applications.
 
 ## Usage
 
-```bash
-i3-prefers-color-scheme [light|dark]
-```
+    i3-prefers-color-scheme [default|light|dark]
