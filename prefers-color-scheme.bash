@@ -21,6 +21,7 @@ fi
 
 # Configure GTK 3
 #gsettings set org.gnome.desktop.interface application-prefer-dark-theme 1
+
 if [[ "$value" == "dark" ]]; then
   gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 else
@@ -29,6 +30,10 @@ fi
 
 # Configure GTK 4
 # https://wiki.archlinux.org/title/GTK#Dark_theme_variant
+
+# It looks like it has been abandoned though
+# https://docs.gtk.org/gtk3/property.Settings.gtk-color-scheme.html
+
 if [[ "$value" != "default" ]]; then
   gsettings set org.gnome.desktop.interface color-scheme prefer-$value
 else
