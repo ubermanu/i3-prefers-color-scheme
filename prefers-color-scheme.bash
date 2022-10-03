@@ -10,15 +10,27 @@ else
   value="$1"
 fi
 
-# Check that the value is either "dark" or "light".
-if [[ "$value" != "dark" && "$value" != "light" ]]; then
-  echo "Invalid value: $value"
+if [[ -z "$value" ]]; then
+  value="default"
+fi
+
+if [[ "$value" != "default" && "$value" != "dark" && "$value" != "light" ]]; then
+  echo "Invalid value: '$value'. Must be 'default', 'dark' or 'light'." >&2
   exit 1
 fi
 
 # Configure GTK 3
-gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-$value"
+#gsettings set org.gnome.desktop.interface application-prefer-dark-theme 1
+if [[ "$value" == "dark" ]]; then
+  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+else
+  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
+fi
 
 # Configure GTK 4
 # https://wiki.archlinux.org/title/GTK#Dark_theme_variant
-gsettings set org.gnome.desktop.interface color-scheme prefer-$value
+if [[ "$value" != "default" ]]; then
+  gsettings set org.gnome.desktop.interface color-scheme prefer-$value
+else
+  gsettings set org.gnome.desktop.interface color-scheme default
+fi
