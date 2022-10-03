@@ -1,10 +1,17 @@
 # i3-prefers-color-scheme
 
-This is a script to change the `prefers-color-scheme` in supported applications.
+This is a script to change the `color-scheme` preference in supported applications.
+
+- GTK3 apps
+- Firefox
+- Chromium
+- Google Chrome
 
 ## Install
 
     bpkg install -g ubermanu/i3-prefers-color-scheme
+
+> To install `bpkg` see [their repository](https://github.com/bpkg/bpkg).
 
 ## Usage
 
