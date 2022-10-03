@@ -34,3 +34,23 @@ if [[ "$value" != "default" ]]; then
 else
   gsettings set org.gnome.desktop.interface color-scheme default
 fi
+
+# Set the flags in the `~/.config/chromium-flags.conf` file.
+# https://wiki.archlinux.org/title/Chromium#Dark_mode
+# https://bugs.chromium.org/p/chromium/issues/detail?id=998903
+
+# Get the path to the `chromium-flags.conf` file.
+chromium_flags_conf="$HOME/.config/chromium-flags.conf"
+
+# Create the file if it doesn't exist.
+if [[ ! -f "$chromium_flags_conf" ]]; then
+  touch "$chromium_flags_conf"
+fi
+
+# Remove the old flags.
+sed -i '/^--force-dark-mode/d' "$chromium_flags_conf"
+
+# Add the new flags.
+if [[ "$value" != "default" ]]; then
+  echo "--force-dark-mode=$value" >> "$chromium_flags_conf"
+fi
