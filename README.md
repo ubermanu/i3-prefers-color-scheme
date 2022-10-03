@@ -9,9 +9,11 @@ This is a script to change the `color-scheme` preference in supported applicatio
 
 ## Install
 
-    bpkg install -g ubermanu/i3-prefers-color-scheme
+Copy the script to your `$PATH` and make it executable.
 
-> To install `bpkg` see [their repository](https://github.com/bpkg/bpkg).
+Or, if you have [bpkg](https://github.com/bpkg/bpkg), you can install it with:
+
+    bpkg install -g ubermanu/i3-prefers-color-scheme
 
 ## Usage
 
