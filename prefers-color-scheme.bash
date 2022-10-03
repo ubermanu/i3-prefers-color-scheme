@@ -20,16 +20,23 @@ if [[ "$value" != "default" && "$value" != "dark" && "$value" != "light" ]]; the
 fi
 
 # Configure GTK 3
-#gsettings set org.gnome.desktop.interface application-prefer-dark-theme 1
+# Set `gtk-application-prefer-dark-theme=true` in the `~/.config/gtk-3.0/settings.ini` file.
 
 if [[ "$value" == "dark" ]]; then
-  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-else
-  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
-fi
+  # If the file doesn't exist, create it.
+  if [[ ! -f "$HOME/.config/gtk-3.0/settings.ini" ]]; then
+    mkdir -p "$HOME/.config/gtk-3.0"
+    echo "[Settings]" > "$HOME/.config/gtk-3.0/settings.ini"
+  fi
 
-# Configure GTK 4
-# https://wiki.archlinux.org/title/GTK#Dark_theme_variant
+  # Set the `gtk-application-prefer-dark-theme` key to `true`.
+  sed -i -E 's/^gtk-application-prefer-dark-theme=(true|false)$/\gtk-application-prefer-dark-theme=true/' "$HOME/.config/gtk-3.0/settings.ini"
+
+  # If the key doesn't exist, add it.
+  if ! grep -q "^gtk-application-prefer-dark-theme=" "$HOME/.config/gtk-3.0/settings.ini"; then
+    echo "gtk-application-prefer-dark-theme=true" >> "$HOME/.config/gtk-3.0/settings.ini"
+  fi
+fi
 
 # It looks like it has been abandoned though
 # https://docs.gtk.org/gtk3/property.Settings.gtk-color-scheme.html
@@ -39,6 +46,11 @@ if [[ "$value" != "default" ]]; then
 else
   gsettings set org.gnome.desktop.interface color-scheme default
 fi
+
+# Configure GTK 4
+# https://wiki.archlinux.org/title/GTK#Dark_theme_variant
+
+# TODO: Figure out how to set the `prefers-color-scheme` media query to `dark` or `light` in GTK 4.
 
 # Set the flags in the `~/.config/chromium-flags.conf` file.
 # https://wiki.archlinux.org/title/Chromium#Dark_mode
