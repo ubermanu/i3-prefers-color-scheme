@@ -2,6 +2,10 @@
 
 This is a script to change the `prefers-color-scheme` in supported applications.
 
+## Install
+
+    bpkg install -g ubermanu/i3-prefers-color-scheme
+
 ## Usage
 
     i3-prefers-color-scheme [default|light|dark]
