@@ -1,5 +1,5 @@
 {
-  "name": "i3-prefer-color-scheme",
+  "name": "i3-prefers-color-scheme",
   "version": "1.0.0",
   "description": "A bash script to set the color scheme of i3wm applications",
   "global": "1",
