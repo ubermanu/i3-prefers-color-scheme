@@ -51,6 +51,6 @@ fi
 sed -i '/^--force-dark-mode/d' "$chromium_flags_conf"
 
 # Add the new flags.
-if [[ "$value" != "default" ]]; then
-  echo "--force-dark-mode=$value" >> "$chromium_flags_conf"
+if [[ "$value" == "dark" ]]; then
+  echo "--force-dark-mode" >> "$chromium_flags_conf"
 fi
