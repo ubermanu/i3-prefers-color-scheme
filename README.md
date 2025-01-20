@@ -9,7 +9,7 @@ This is a script to change the `color-scheme` preference in supported applicatio
 
 ## Install
 
-    curl https://ubermanu.github.io/i3-prefers-color-scheme/install.sh | sh
+    curl -sSL https://ubermanu.github.io/i3-prefers-color-scheme/install.sh | sh
 
 > This will install the script into your `.local/bin` directory.
 
